@@ -6,6 +6,18 @@ import HomePage from "./HomePage";
 
 jest.mock("axios");
 
+test("throw error message after render fails", async () => {
+  (axios.get as any).mockImplementation(() =>
+    Promise.reject("Couldn't get posts"),
+  );
+  await act(async () => {
+    render(<HomePage />);
+  });
+
+  const errorMessage = screen.getByText("ERROR!");
+  expect(errorMessage).toBeInTheDocument();
+});
+
 test("render learn react link", async () => {
   (axios.get as any).mockImplementation(() =>
     Promise.resolve({

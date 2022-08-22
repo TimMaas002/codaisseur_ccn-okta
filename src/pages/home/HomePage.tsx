@@ -17,10 +17,10 @@ export default function HomePage() {
     (async () => {
       setState({ status: "loading" });
       try {
-        const res = await axios.get(
-          "https://codaisseur-coders-network.herokuapp.com/posts",
+        const response = await axios.get(
+          "https://codaisseur-coders-network.herokuapp.com/posts?limit=100",
         );
-        setState({ status: "success", data: res.data });
+        setState({ status: "success", data: response.data });
       } catch (error) {
         setState({ status: "error", error });
       }

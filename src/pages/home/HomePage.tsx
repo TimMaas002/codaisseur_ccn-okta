@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from "react";
-
-import axios from "axios";
-
-import { FetchState } from "../../util/fetchstate";
+import React from "react";
+import { useFetchData } from "../../lib/useFetchData";
 import { PostResponse } from "../../lib/model";
 
 import { Typography, Container, Grid, Card, CardContent } from "@mui/material";
 
 export default function HomePage() {
-  const [state, setState] = useState<FetchState<PostResponse>>({
-    status: "loading",
-  });
-
-  useEffect(() => {
-    (async () => {
-      setState({ status: "loading" });
-      try {
-        const response = await axios.get(
-          "https://codaisseur-coders-network.herokuapp.com/posts",
-        );
-        setState({ status: "success", data: response.data });
-      } catch (error) {
-        setState({ status: "error", error });
-      }
-    })();
-  }, []);
+  const state = useFetchData<PostResponse>(
+    "https://codaisseur-coders-network.herokuapp.com/posts",
+  );
 
   return (
     <Container fixed>

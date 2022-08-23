@@ -1,24 +1,25 @@
 import React from "react";
-import { useFetchData } from "../../lib/useFetchData";
+// import { useFetchData } from "../../lib/useFetchData";
+import { withFetchData } from "../../lib/withFetchData";
 import { PostResponse } from "../../lib/model";
 
 import { Typography, Container, Grid, Card, CardContent } from "@mui/material";
 
-export default function HomePage() {
-  const state = useFetchData<PostResponse>(
-    "https://codaisseur-coders-network.herokuapp.com/posts",
-  );
+const url = "https://codaisseur-coders-network.herokuapp.com/posts";
 
+export default withFetchData<PostResponse>(url)(function HomePage({
+  fetchState,
+}) {
   return (
     <Container fixed>
       <Typography variant="h3" component="h1">
         Codaisseur Coders Network
       </Typography>
-      {state.status === "loading" && <p>Loading...</p>}
-      {state.status === "error" && <p>ERROR!</p>}
-      {state.status === "success" && (
+      {fetchState.status === "loading" && <p>Loading...</p>}
+      {fetchState.status === "error" && <p>ERROR!</p>}
+      {fetchState.status === "success" && (
         <Grid container spacing={3}>
-          {state.data.rows.map((post) => {
+          {fetchState.data.rows.map((post) => {
             return (
               <Grid key={post.id} item xs={4}>
                 <Card>
@@ -44,4 +45,4 @@ export default function HomePage() {
       )}
     </Container>
   );
-}
+});

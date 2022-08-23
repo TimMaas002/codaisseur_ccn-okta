@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -18,7 +17,7 @@ export default function HomePage() {
       setState({ status: "loading" });
       try {
         const response = await axios.get(
-          "https://codaisseur-coders-network.herokuapp.com/posts?limit=100",
+          "https://codaisseur-coders-network.herokuapp.com/posts",
         );
         setState({ status: "success", data: response.data });
       } catch (error) {

@@ -8,7 +8,7 @@ export default function LoginPage() {
       <Typography variant="h3" component="h1">
         Codaisseur Coders Network
       </Typography>
-      <p>Login!</p>
+      <p>Welcome! Login</p>
     </Container>
   );
 }

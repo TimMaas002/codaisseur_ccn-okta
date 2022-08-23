@@ -8,7 +8,7 @@ export default function SignupPage() {
       <Typography variant="h3" component="h1">
         Codaisseur Coders Network
       </Typography>
-      <p>SignUp</p>
+      <p>Welcome! Signup</p>
     </Container>
   );
 }

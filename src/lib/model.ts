@@ -19,7 +19,7 @@ export type Post = {
   post_likes: PostLike[];
 };
 
-export type PostResponse = {
+export type PostsResponse = {
   count: number;
   rows: Post[];
 };
